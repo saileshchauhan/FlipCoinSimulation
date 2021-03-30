@@ -1,8 +1,21 @@
 #!/bin/bash/ -x
-randomFlip=$((RANDOM%2))
-if [ $randomFlip -eq  0 ]
-then
-	echo "Heads"
-else
-	echo "Tails"
-fi
+
+echo "Enter Times to flip: "
+read num
+
+heads=0
+tails=0
+count=0
+while [ $count -ne $num ]
+do
+	$((count++))
+	result=$((RANDOM % 2))
+	if [ $result -eq 0 ]
+	then
+		$((tails++))
+	else
+		$((heads++))
+	fi
+done
+echo "Heads: " $heads
+echo "Tails: " $tails
