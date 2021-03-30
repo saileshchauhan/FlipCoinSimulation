@@ -1,21 +1,29 @@
 #!/bin/bash/ -x
 
-echo "Enter Times to flip: "
-read num
+
 
 heads=0
 tails=0
-count=0
-while [ $count -ne $num ]
+
+while [ $heads -ne 21 -a $tails -ne 21 ]
 do
-	count=$(($count+1))
+
 	result=$((RANDOM % 2))
 	if [ $result -eq 0 ]
 	then
-		$((tails++))
+		heads=$(($heads+1))
 	else
-		$((heads++))
+		tails=$(($tails+1))
 	fi
 done
-echo "Heads: " $heads
-echo "Tails: " $tails
+
+if [ $heads -eq $tails ]
+then
+	echo "Tie : Heads "$heads
+	echo "Tie : Tails "$tails
+elif [ $heads -gt $tails ]
+then
+	echo "Heads Win " "Difference :"$(($heads-$tails))
+elif [ $tails -gt $heads ]
+then echo "Tails win " "Difference : "$(($tails-$heads))
+fi
